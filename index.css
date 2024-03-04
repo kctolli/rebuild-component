@@ -1,9 +1,9 @@
-.button {
+button {
     display: grid;
     place-items: center;
 }
 
-.svg {
+svg {
     width: 15px;
     height: 15px;
 }

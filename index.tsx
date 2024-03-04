@@ -3,7 +3,7 @@ import React, { useRef } from 'react';
 import axios from 'axios';
 
 import Refresh from './Refresh';
-import s from './index.module.css';
+import './index.css';
 
 /**
  * ReBuild function takes buildUrl and statusUrl as parameters and returns a JSX element.
@@ -22,7 +22,6 @@ export default function ReBuild({buildUrl, statusUrl}: {buildUrl: string, status
    */
   const handleBuild = async () => {
     await axios.post(buildUrl, {});
-    // @ts-ignore
     statusRef.current.src += '';
   }
 
@@ -36,10 +35,7 @@ export default function ReBuild({buildUrl, statusUrl}: {buildUrl: string, status
         frameBorder="0"
       />
       <br />
-      <button 
-        onClick={handleBuild} 
-        className={s.button}
-      >
+      <button onClick={handleBuild} >
         <Refresh className={s.svg} /> Rebuild
       </button>
     </div>
