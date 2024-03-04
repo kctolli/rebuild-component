@@ -1,9 +1,7 @@
 // @ts-nocheck
+import { ReloadOutlined } from '@ant-design/icons';
 import React, { useRef } from 'react';
 import axios from 'axios';
-
-import Refresh from './Refresh';
-import './index.css';
 
 /**
  * ReBuild function takes buildUrl and statusUrl as parameters and returns a JSX element.
@@ -36,7 +34,7 @@ export default function ReBuild({buildUrl, statusUrl}: {buildUrl: string, status
       />
       <br />
       <button onClick={handleBuild} >
-        <Refresh className={s.svg} /> Rebuild
+        <ReloadOutlined /> Rebuild
       </button>
     </div>
   );
