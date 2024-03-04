@@ -3,6 +3,7 @@ import React, { useRef } from 'react';
 import axios from 'axios';
 
 import Refresh from './Refresh';
+import s from './index.module.css';
 
 /**
  * ReBuild function takes buildUrl and statusUrl as parameters and returns a JSX element.
@@ -11,9 +12,14 @@ import Refresh from './Refresh';
  * @param {string} statusUrl - The URL for checking the build status
  * @return {JSX.Element} The JSX element containing an iframe and a button for triggering a build
  */
-function ReBuild({buildUrl, statusUrl}: {buildUrl: string, statusUrl: string}) {  
+export default function ReBuild({buildUrl, statusUrl}: {buildUrl: string, statusUrl: string}) {  
   const statusRef = useRef<HTMLIFrameElement>();
 
+  /**
+   * Handle the build process asynchronously.
+   *
+   * @return {Promise<void>} A Promise that resolves when the build process is complete
+   */
   const handleBuild = async () => {
     await axios.post(buildUrl, {});
     // @ts-ignore
@@ -30,11 +36,12 @@ function ReBuild({buildUrl, statusUrl}: {buildUrl: string, statusUrl: string}) {
         frameBorder="0"
       />
       <br />
-      <button onClick={handleBuild}>
-        <Refresh /> Rebuild
+      <button 
+        onClick={handleBuild} 
+        className={s.button}
+      >
+        <Refresh className={s.svg} /> Rebuild
       </button>
     </div>
   );
 }
-
-export default ReBuild;
