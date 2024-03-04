@@ -1,0 +1,13 @@
+{
+  "name": "@kctolli/rebuild-component",
+  "version": "1.0.0",
+  "description": "Component that helps rebuild/redeploy an app in services like netlify",
+  "main": "index.tsx",
+  "author": "kctolli",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "axios": "^1.6.7",
+    "react": "^18.2.0",
+    "typescript": "^5.3.3"
+  }
+}
