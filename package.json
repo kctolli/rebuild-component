@@ -1,6 +1,6 @@
 {
   "name": "@kctolli/rebuild-component",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "Component that helps rebuild/redeploy an app in services like netlify",
   "main": "index.tsx",
   "author": "kctolli",
