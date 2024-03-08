@@ -1,16 +1,24 @@
 // @ts-nocheck
-import { ReloadOutlined } from '@ant-design/icons';
-import React, { useRef } from 'react';
+import React, 
+  { useRef, 
+    useState, 
+    memo, 
+    ReactElement 
+  } from 'react';
 import axios from 'axios';
+
+import Refresh from './Refresh';
+import s from './index.module.css';
 
 /**
  * ReBuild function takes buildUrl and statusUrl as parameters and returns a JSX element.
  *
  * @param {string} buildUrl - The URL for triggering the build
  * @param {string} statusUrl - The URL for checking the build status
- * @return {JSX.Element} The JSX element containing an iframe and a button for triggering a build
+ * @return {ReactElement} The Component containing an iframe and a button for triggering a build
  */
-export default function ReBuild({buildUrl, statusUrl}: {buildUrl: string, statusUrl: string}) {  
+const ReBuild = ({buildUrl, statusUrl}: {buildUrl: string, statusUrl: string}): ReactElement => {  
+  const [building, setBuilding] = useState(false);
   const statusRef = useRef<HTMLIFrameElement>();
 
   /**
@@ -21,6 +29,12 @@ export default function ReBuild({buildUrl, statusUrl}: {buildUrl: string, status
   const handleBuild = async () => {
     await axios.post(buildUrl, {});
     statusRef.current.src += '';
+    setBuilding(true);
+
+    setTimeout(() => {
+      statusRef.current.src += '';
+      setBuilding(false);
+    }, 30000);
   }
 
   return (
@@ -33,9 +47,11 @@ export default function ReBuild({buildUrl, statusUrl}: {buildUrl: string, status
         frameBorder="0"
       />
       <br />
-      <button onClick={handleBuild} >
-        <ReloadOutlined /> Rebuild
+      <button onClick={handleBuild} disabled={building}>
+        <Refresh className={s.refresh} /> Rebuild
       </button>
     </div>
   );
 }
+
+export default memo(ReBuild);
